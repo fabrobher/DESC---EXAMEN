@@ -22,6 +22,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      codigoDescuento: {
+        type : Sequelize.STRING,
+        defaultValue: ''
+      },
+      descuento: {
+        type: Sequelize.INTEGER,
+        default: 0
+      },
+
       url: {
         type: Sequelize.STRING
       },

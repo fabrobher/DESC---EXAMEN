@@ -45,6 +45,14 @@ const loadModel = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DOUBLE
     },
+    codigoDescuento: {
+      type : DataTypes.STRING,
+      defaultValue: ''
+    },
+    descuento: {
+      type: DataTypes.INTEGER,
+      default: 0
+    },
     averageServiceMinutes: DataTypes.DOUBLE,
     email: DataTypes.STRING,
     phone: DataTypes.STRING,

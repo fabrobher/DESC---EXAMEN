@@ -10,7 +10,8 @@ const index = async function (req, res) {
         model: RestaurantCategory,
         as: 'restaurantCategory'
       },
-        order: [[{ model: RestaurantCategory, as: 'restaurantCategory' }, 'name', 'ASC']]
+        // Restaurantes ordenados primero por los descuentos y después por los que no tienen
+        order: [['codigoDescuento','DESC'],[{ model: RestaurantCategory, as: 'restaurantCategory' }, 'name', 'ASC']]
       }
     )
     res.json(restaurants)
@@ -25,6 +26,7 @@ const indexOwner = async function (req, res) {
       {
         attributes: { exclude: ['userId'] },
         where: { userId: req.user.id },
+        order: [['descuento', 'DESC']],
         include: [{
           model: RestaurantCategory,
           as: 'restaurantCategory'

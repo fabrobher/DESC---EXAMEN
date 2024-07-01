@@ -19,7 +19,7 @@ export default function CreateRestaurantScreen ({ navigation }) {
   const [restaurantCategories, setRestaurantCategories] = useState([])
   const [backendErrors, setBackendErrors] = useState()
 
-  const initialRestaurantValues = { name: null, description: null, address: null, postalCode: null, url: null, shippingCosts: null, email: null, phone: null, restaurantCategoryId: null }
+  const initialRestaurantValues = { name: null, description: null, codigoDescuento: null, descuento: null, saddress: null, postalCode: null, url: null, shippingCosts: null, email: null, phone: null, restaurantCategoryId: null }
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -37,6 +37,17 @@ export default function CreateRestaurantScreen ({ navigation }) {
       .string()
       .nullable()
       .url('Please enter a valid url'),
+
+    codigoDescuento: yup
+      .string()
+      .max(10, "Descuento too long"),
+    descuento: yup
+      .number()
+      .positive()
+      .integer()
+      .min(1)
+      .max(99),
+
     shippingCosts: yup
       .number()
       .positive('Please provide a valid shipping cost value')
@@ -149,6 +160,15 @@ export default function CreateRestaurantScreen ({ navigation }) {
                 name='url'
                 label='Url:'
               />
+              <InputItem
+                name='codigoDescuento'
+                label='Código de Descuento:'
+              />
+              <InputItem
+                name='descuento'
+                label='Decuento:'
+              />
+            
               <InputItem
                 name='shippingCosts'
                 label='Shipping costs:'

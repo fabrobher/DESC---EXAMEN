@@ -65,6 +65,12 @@ export default function RestaurantDetailScreen ({ navigation, route }) {
         {!item.availability &&
           <TextRegular textStyle={styles.availability }>Not available</TextRegular>
         }
+        <View style={{ position: 'absolute', top: 0, right: 10}}>
+          {restaurant.codigoDescuento 
+          ? <TextRegular style={{ color: 'red'}}>Este producto tiene un {restaurant.descuento}% de descuento</TextRegular>
+          :<TextRegular></TextRegular>}
+        </View>
+
          <View style={styles.actionButtonsContainer}>
           <Pressable
             onPress={() => navigation.navigate('EditProductScreen', { id: item.id })

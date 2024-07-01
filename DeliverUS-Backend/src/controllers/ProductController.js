@@ -39,6 +39,15 @@ const show = async function (req, res) {
 const create = async function (req, res) {
   let newProduct = Product.build(req.body)
   try {
+
+    // Si cuando creamos un producto nuevo en un
+    // restaurante que tiene un codigo de descuento , que ese
+    //codigo de descuento se aplica al precio de ese producto 
+    const precio = newProduct.price
+    const restaurant = await Restaurant.findOne({where: {id: req.body.restaurantId}})
+    const descuento = restaurant.descuento
+    newProduct.price = precio - (descuento /100)
+    
     newProduct = await newProduct.save()
     res.json(newProduct)
   } catch (err) {
